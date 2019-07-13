@@ -28,13 +28,13 @@ namespace BasicSerialization.Models
         [XmlElement(ElementName = "publisher")]
         public string Publisher { get; set; }
 
-        [XmlElement(ElementName = "publish_date")]
+        [XmlElement(ElementName = "publish_date", DataType = "date")]
         public DateTime PublishDate { get; set; }
 
         [XmlElement(ElementName = "description")]
         public string Description { get; set; }
 
-        [XmlElement(ElementName = "registration_date")]
+        [XmlElement(ElementName = "registration_date", DataType = "date")]
         public DateTime RegistrationDate { get; set; }
     }
 }

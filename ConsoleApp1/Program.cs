@@ -11,57 +11,38 @@ namespace ConsoleApp1
     class Program
     {
         static void Main(string[] args)
-        {
-            Catalog catalog = new Catalog()
-            {
-                Date = DateTime.Now,
-                Books = new Book[]
-                {
-                    new Book
-                    {
-                        Author = "DDDD",
-                        Description = "dfdfdfdf",
-                        Id = "fadsfdsaf",
-                        ISBN = "dfdfdf85dfdf64df",
-                        Publisher = "dfdfdf",
-                        Genre = Genre.Computer,
-                        PublishDate = DateTime.Now,
-                        RegistrationDate = DateTime.Now
+        {  
+            CatalogSerializer uploadCatalog = new CatalogSerializer();
 
+            Console.WriteLine(@"Deserialize from 'books.xml'...");
+            Console.WriteLine();
+            Catalog catalog = uploadCatalog.Deserialize();
 
-                    },
-                    new Book
-                    {
-                        Author = "DDDD",
-                        Description = "dfdfdfdf",
-                        Id = "fadsfdsaf",
-                        ISBN = "dfdfdf85dfdf64df",
-                        Publisher = "dfdfdf",
-                        Genre = Genre.Fantasy,
-                        PublishDate = DateTime.Now,
-                        RegistrationDate = DateTime.Now
+            ShowCatalog(catalog);
 
-
-                    },
-                    new Book
-                    {
-                        Author = "DDDD",
-                        Description = "dfdfdfdf",
-                        Id = "fadsfdsaf",
-                        ISBN = "dfdfdf85dfdf64df",
-                        Publisher = "dfdfdf",
-                        Genre = Genre.Romance,
-                        PublishDate = DateTime.Now,
-                        RegistrationDate = DateTime.Now
-                    }
-                }
-            };
-
-
-
-            UploadCatalog uploadCatalog = new UploadCatalog();
-
+            Console.WriteLine();
+            Console.WriteLine(@"Serialize to 'books.xml'...");
             uploadCatalog.Serialize(catalog);
+
+            Console.Read();
+        }
+
+        private static void ShowCatalog(Catalog catalog)
+        {
+            Console.WriteLine($"Date: {catalog.Date}");
+
+            foreach (var book in catalog.Books)
+            {
+                Console.WriteLine($"BookId:           {book.Id}");
+                Console.WriteLine($"ISBN:             {book.ISBN}");
+                Console.WriteLine($"Author:           {book.Author}");
+                Console.WriteLine($"Title:            {book.Title}");
+                Console.WriteLine($"Genre:            {book.Genre}");
+                Console.WriteLine($"Publisher:        {book.Publisher}");
+                Console.WriteLine($"PublishDate:      {book.PublishDate}");
+                Console.WriteLine($"Description:      {book.Description}");
+                Console.WriteLine($"RegistrationDate: {book.RegistrationDate}");
+            }
         }
     }
 }
